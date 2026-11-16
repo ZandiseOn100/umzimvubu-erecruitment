@@ -1673,6 +1673,9 @@ app.get('/api/admin/jobs/:id/masterlist', requireAdmin, async (req, res) => {
   }
 });
 
+/* ==========================================================================
+   ADMIN — master list CSV export
+   ========================================================================== */
 app.get('/api/admin/jobs/:id/masterlist.csv', requireAdmin, async (req, res) => {
   const jobId = Number(req.params.id);
   if (!Number.isInteger(jobId) || jobId <= 0) {
@@ -1690,10 +1693,27 @@ app.get('/api/admin/jobs/:id/masterlist.csv', requireAdmin, async (req, res) => 
       });
     }
 
-    const csv = masterlist.toCsv([
-      ...qualified.map(r => ({ ...r, status: 'Qualified' })),
-      ...unqualified.map(r => ({ ...r, status: 'Unqualified' }))
-    ]);
+    // --- NEW: Generate dynamic CV URL for Excel ---
+    const baseUrl = `${req.protocol}://${req.get('host')}`;
+    
+    const injectCvLink = (record) => {
+      // Extract just the filename from the path
+      const cvFilename = record.cvPath ? String(record.cvPath).split(/[\\/]/).pop() : null;
+      
+      // Build the Excel Hyperlink formula
+      const cvLink = cvFilename
+        ? `=HYPERLINK("${baseUrl}/uploads/${encodeURIComponent(cvFilename)}", "View CV")`
+        : 'No CV Uploaded';
+
+      return { ...record, cvLink };
+    };
+
+    // Apply the link to all records
+    const finalQualified = qualified.map(injectCvLink);
+    const finalUnqualified = unqualified.map(injectCvLink);
+    // ----------------------------------------------
+
+    const csv = masterlist.toCsv([...finalQualified, ...finalUnqualified]);
 
     const safeTitle = job.title.replace(/[^a-z0-9]+/gi, '_').slice(0, 60);
     res.setHeader('Content-Type', 'text/csv; charset=utf-8');

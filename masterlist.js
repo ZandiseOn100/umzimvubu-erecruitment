@@ -428,6 +428,9 @@ async function buildMasterLists(db, jobId) {
       currentExperience,
       originalListing,
       applicantResponse,
+      
+      // CRITICAL: Save the CV path so server.js can build the URL
+      cvPath: cvRel,
 
       // Front-end display props
       applicationId: row.application_id,
@@ -437,7 +440,7 @@ async function buildMasterLists(db, jobId) {
       verdict: finalQualified ? 'Qualified' : 'Unqualified',
       reasons: reasons.join(' | '),
       source: result.source,
-      aiReasons: result.aiDetails ? result.aiDetails.reasons : null // <--- ADDED THIS
+      aiReasons: result.aiDetails ? result.aiDetails.reasons : null
     };
 
     if (finalQualified) qualified.push(record);
@@ -467,7 +470,8 @@ const COLUMNS = [
   { key: 'previousExperience',  label: 'Previous Experience' },
   { key: 'currentExperience',   label: 'Current Experience' },
   { key: 'originalListing',     label: 'Original Job Listing' },
-  { key: 'applicantResponse',   label: 'Applicant Response (CV extract)' }
+  { key: 'applicantResponse',   label: 'Applicant Response (CV extract)' },
+  { key: 'cvLink',              label: 'CV Link' } // <-- ADDED COLUMN O
 ];
 
 function toCsv(records, columns = COLUMNS) {
