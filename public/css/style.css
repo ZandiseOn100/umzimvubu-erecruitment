@@ -81,7 +81,7 @@ img {
   justify-content: space-between;
   align-items: center;
   gap: 24px;
-  background: linear-gradient(110deg, #173b2a, #245b3b);
+  background: linear-gradient(110deg,  #70092b);
   color: #fff;
   padding: 16px 5%;
   border-bottom: 4px solid #d8b54a;
@@ -89,7 +89,7 @@ img {
 }
 
 .site-header.admin {
-  background: #263a30;
+  background: #70092b;
 }
 
 .brand {
@@ -182,14 +182,14 @@ img {
 
 .site-header nav .btn-primary {
   padding: 10px 17px;
-  border: 1px solid #e3c45d;
+  border: 1px solid #740e0e;
   border-radius: 5px;
-  background: #e3c45d;
+  background: #f0d67d;
   color: #243629;
 }
 
 .site-header nav .btn-primary:hover {
-  background: #f0d67d;
+  background: #c9b368;
   color: #17281d;
 }
 
@@ -416,7 +416,7 @@ img {
   padding: 12px 27px;
   border: 0;
   border-radius: 5px;
-  background: #245b3b;
+  background: #7c1427;
   color: #fff;
   font-weight: 700;
   cursor: pointer;
@@ -473,7 +473,7 @@ img {
   min-width: 0;
   padding: 22px;
   border: 1px solid #e0e5df;
-  border-top: 4px solid #245b3b;
+  border-top: 4px solid #70092b;
   border-radius: 7px;
   background: #fff;
   box-shadow: 0 3px 12px rgba(0, 0, 0, .035);
@@ -487,7 +487,7 @@ img {
 
 .job-card h4 {
   margin: 0 0 4px;
-  color: #214832;
+  color: #70092b;
   font-size: 18px;
   line-height: 1.4;
   overflow-wrap: anywhere;
@@ -500,7 +500,7 @@ img {
   border: 1px solid #dce8dd;
   border-radius: 4px;
   background: #edf4ed;
-  color: #245b3b;
+  color: #26245b;
   font-size: 12px;
   font-weight: 650;
 }
@@ -514,7 +514,7 @@ img {
 }
 
 .job-meta {
-  color: #405d48;
+  color: #3c194b;
   font-size: 13px;
   font-weight: 650;
 }
@@ -540,7 +540,7 @@ img {
   padding: 10px 16px;
   border: 0;
   border-radius: 5px;
-  background: #245b3b;
+  background: #70092b;
   color: #fff;
   font-weight: 700;
   cursor: pointer;
