@@ -5,7 +5,12 @@ const path = require('path');
 const crypto = require('crypto');
 const bcrypt = require('bcryptjs');
 
-const db = new Database(path.join(__dirname, 'database.sqlite'));
+// Use /data for production (Fly.io volume), local path for development
+const dbPath = process.env.NODE_ENV === 'production'
+  ? '/data/database.sqlite'
+  : path.join(__dirname, 'database.sqlite');
+
+const db = new Database(dbPath);
 db.pragma('journal_mode = WAL');
 db.pragma('foreign_keys = ON');
 

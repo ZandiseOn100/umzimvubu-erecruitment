@@ -155,7 +155,10 @@ app.get(['/admin.html', '/admin'], (_req, res) => {
 /* --------------------------------------------------------------------------
    File uploads
    -------------------------------------------------------------------------- */
-const UPLOAD_DIR = path.join(__dirname, 'uploads');
+const UPLOAD_DIR = process.env.NODE_ENV === 'production'
+  ? '/data/uploads'
+  : path.join(__dirname, 'uploads');
+  
 fs.mkdirSync(UPLOAD_DIR, { recursive: true });
 
 const ALLOWED_EXT = /\.(pdf|doc|docx|docm|dot|dotx|rtf|odt|jpg|jpeg|png)$/i;
