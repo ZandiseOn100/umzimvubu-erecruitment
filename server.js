@@ -1718,7 +1718,7 @@ app.use((req, res) => {
 });
 
 /* -------------------------------------------------------------------------- */
-app.listen(PORT, () => {
+app.listen(PORT, "0.0.0.0", () => {
   console.log(`Umzimvubu recruitment API on http://localhost:${PORT}`);
   if (ADMIN_IPS.length) console.log(`[admin] IP allowlist active: ${ADMIN_IPS.join(', ')}`);
 });
