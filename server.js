@@ -17,7 +17,7 @@ const screening  = require('./screening');
 const ats        = require('./ats');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8080;
 const isProd = process.env.NODE_ENV === 'production';
 
 const VERIFICATION_TTL_SECONDS = 15 * 60;
