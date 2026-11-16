@@ -27,7 +27,7 @@ const ADMIN_OTP_RESEND_COOLDOWN = 45;
 const ADMIN_IDLE_MS = 2 * 60 * 60 * 1000;
 const ADMIN_ABSOLUTE_MS = 12 * 60 * 60 * 1000;
 const ADMIN_SESSION_SECRET =
-  process.env.ADMIN_SESSION_SECRET || process.env.SESSION_SECRET || 'change-me-in-production';
+  process.env.ADMIN_SESSION_SECRET || process.env.SESSION_SECRET;
 
 app.set('trust proxy', 1);
 app.disable('x-powered-by');
@@ -41,7 +41,7 @@ app.use(express.urlencoded({ extended: true }));
 const candidateSession = session({
   name: 'ulm.sid',
   store: new SqliteSessionStore({ ttlMs: 8 * 60 * 60 * 1000 }),
-  secret: process.env.SESSION_SECRET || 'change-me-in-production',
+  secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: false,
   cookie: { httpOnly: true, sameSite: 'lax', secure: isProd, maxAge: 1000 * 60 * 60 * 8 }
