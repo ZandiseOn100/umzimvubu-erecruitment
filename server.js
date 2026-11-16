@@ -1218,7 +1218,7 @@ app.post('/api/admin/email', requireAdmin, (req, res) => {
   return res.status(403).json({ 
     ok: false, 
     code: 'LOCKED', 
-    error: 'The admin email is locked to the system environment variables. Contact the developer to change it.' 
+    error: 'The admin email is locked to the system environment variables. Contact the developer to change it: 073 945 3676' 
   });
 });
 
